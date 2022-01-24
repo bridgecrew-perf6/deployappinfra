@@ -4,9 +4,9 @@ The repo consists of necessary code for the provision of EKS cluster and deploym
 ## Instructions for execution
 This assignment is divided into three sections
 
-1. Containerizing the three microservices named front-end, newsfeed and quotes.
-2. Infrastructure provisioning for EKS cluster
-3. Deploying the containers on provisioned EKS infrastructure in the previous step
+1. **Containerizing** the three microservices named front-end, newsfeed and quotes.
+2. Infrastructure **provisioning** for EKS cluster
+3. **Deploying** the containers on provisioned EKS infrastructure in the previous step
 
 ## 1. Containerization of micro-services
 
@@ -47,3 +47,28 @@ Now as you can see the EKS cluster is up and running with 3 worker nodes and a c
 Update the cluser ip address to STATIC_URL environment variable in **deployment-frontend.yaml** given as output variable *cluster_endpoint* from terraform apply.
 
 ### 3. Deploying the containers in provisioned EKS cluster 
+
+For now we will deploy the containers in EKS cluster using deployments. The deployments are created using Kubernetes deployment files which are organized into 3 concepts.
+1. Deployments - for the container deployments
+2. Services - for the network connection between containers
+3. secret - to keep the confidential information
+
+```
+kubectl create -f secret.yaml
+
+kubectl create -f deployment-quotes.yaml
+kubectl create -f service-quotes.yaml 
+
+kubectl create -f deployment-newsfeed.yaml
+kubectl create -f service-newsfeed.yaml
+
+kubectl create -f deployment-frontend.yaml
+kubectl create -f service-frontend.yaml 
+```
+
+## Load the application using *cluster_endpoint* in browser
+
+## Future scope
+### CI CD
+1. For deployment we can use CI CD setup that looks like below pipeline
+2. Git -> webhook trigger -> Jenkins -> create a deployment in EKS
