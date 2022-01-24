@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec: 
+  replicas: 1
+  template:
+    metadata:
+      name: frontend
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: vamsiyvs/frontend:latest
+          env:
+          - name: APP_PORT
+            value: "8080"
+          - name: NEWSFEED_SERVICE_URL
+            value: http://newsfeed:8080
+          - name: QUOTE_SERVICE_URL
+            value: http://quotes:8080
+          - name: STATIC_URL
+            value: "http://a76ee0c1370e94ba1b962a8169336ef2-59599999.us-east-2.elb.amazonaws.com/"
+          - name: NEWSFEED_SERVICE_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: servicetoken
+                key: token
+
+  selector:
+    matchLabels: 
+      app: frontend
