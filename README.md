@@ -1,6 +1,8 @@
 # deployappinfra
 The repo consists of necessary code for the provision of EKS cluster and deployment of docker containers to EKS cluster
-
+## Pre requisites
+1. [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli) installed
+2. [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed
 ## Instructions for execution
 This assignment is divided into three sections
 
