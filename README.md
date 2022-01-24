@@ -66,7 +66,7 @@ kubectl create -f deployment-frontend.yaml
 kubectl create -f service-frontend.yaml 
 ```
 
-## Load the application using *cluster_endpoint* in browser
+## 3. Load the application using *cluster_endpoint* in browser
 
 ## Future scope
 ### CI CD
