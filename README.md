@@ -4,11 +4,11 @@ The repo consists of necessary code for the provision of EKS cluster and deploym
 ## Instructions for execution
 This assignment is divided into three sections
 
-Containerizing the three microservices named front-end, newsfeed and quotes.
-Infrastructure provisioning for EKS cluster
-Deploying the containers on provisioned EKS infrastructure in the previous step
+1. Containerizing the three microservices named front-end, newsfeed and quotes.
+2. Infrastructure provisioning for EKS cluster
+3. Deploying the containers on provisioned EKS infrastructure in the previous step
 
-## Containerization of micro-services
+## 1. Containerization of micro-services
 
 We are using Docker as runtime hence the 3 microservices front-end, newsfeed and quotes are now containerized with the help of dockerfiles. Please see containers folder for the reference.
 
@@ -35,7 +35,7 @@ docker push vamsiyvs/newsfeed:latest
 docker push vamsiyvs/frontend:latest
 ```
 
-## Infrastructure provisioning
+## 2. Infrastructure provisioning
 
 We will be using Kubernetes for our docker containers deployment. EKS or Elastic Kubernetes Service is a managed Kubernetes offering from AWS which can be used to deploy containers in cloud. Now we will go with provisioning the infrastructure using terraform.
 ```
@@ -46,4 +46,4 @@ terraform apply
 Now as you can see the EKS cluster is up and running with 3 worker nodes and a control plane. We will get a cluster end point which we need to use for the frontend service.
 Update the cluser ip address to STATIC_URL environment variable in **deployment-frontend.yaml** given as output variable *cluster_endpoint* from terraform apply.
 
-### Deploying the containers in provisioned EKS cluster 
+### 3. Deploying the containers in provisioned EKS cluster 
